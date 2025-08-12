@@ -1,17 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
+import "./style.css";
+import Text from "./text";
+import Timer from "./timer";
+import Timesubmit from "./timeSub";
+import Item from "./items";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+let App = () => {
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  let [isLight,setIsLight] = useState(false);
+
+  const [timeArr, setTimeArr] = useState([]);
+
+  let [txt, setTxt] = useState("WellCome Here...!");
+
+  let handlesetTxt = () => {
+    setTxt("Have a Nice Use");
+  };
+
+  return (
+    <div className="main" style={{background : isLight ? "white" : "black"}}>
+      <Text txt={txt} handlesetTxt={handlesetTxt}/>
+      <Timer isLight={isLight} setIsLight={setIsLight} timeArr={timeArr} setTimeArr={setTimeArr}/>
+      <Timesubmit>
+         {timeArr}
+       </Timesubmit>
+    </div>
+  );
+};
+
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+
+
