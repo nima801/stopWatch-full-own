@@ -5,6 +5,7 @@ import Text from "./text";
 import Timer from "./timer";
 import Timesubmit from "./timeSub";
 import Item from "./items";
+import  {contextCom}  from "./testContext";
 
 let App = () => {
 
@@ -19,13 +20,15 @@ let App = () => {
   };
 
   return (
-    <div className="main" style={{background : isLight ? "white" : "black"}}>
-      <Text txt={txt} handlesetTxt={handlesetTxt}/>
+    <contextCom.Provider value={txt}>
+     <div className="main" style={{background : isLight ? "white" : "black"}}>
+      <Text  handlesetTxt={handlesetTxt}/>
       <Timer isLight={isLight} setIsLight={setIsLight} timeArr={timeArr} setTimeArr={setTimeArr}/>
       <Timesubmit>
          {timeArr}
        </Timesubmit>
-    </div>
+     </div>
+    </contextCom.Provider>
   );
 };
 
